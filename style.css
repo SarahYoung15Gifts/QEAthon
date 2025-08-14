@@ -45,6 +45,12 @@ button:hover {
   margin-bottom: 20px;
 }
 
+.image-section {
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center; /* Centers children horizontally */
+}
+
 #breed-select {
   padding: 8px;
   border-radius: 5px;
@@ -68,24 +74,20 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.favorites-section {
-  margin-top: 30px;
-  border-top: 1px dashed #ccc;
-  padding-top: 20px;
-  text-align: left;
-}
-
-.favorites-section h2 {
+.favourites-section h2 {
   text-align: center;
 }
 
-#favorites-list {
+#favourites-list {
   margin-top: 10px;
 }
 
-.favorite-item {
+.favourite-item {
   display: flex;
   align-items: center;
+
+  justify-content: space-between;
+
   margin-bottom: 10px;
   padding: 10px;
   background-color: #f9f9f9;
@@ -93,7 +95,7 @@ button:hover {
   border: 1px solid #eee;
 }
 
-.favorite-item img {
+.favourite-item img {
   width: 50px;
   height: 50px;
   object-fit: cover;
@@ -101,12 +103,12 @@ button:hover {
   margin-right: 10px;
 }
 
-.favorite-item p {
+.favourite-item p {
   margin: 0;
   flex-grow: 1;
 }
 
-.favorite-item .remove-btn {
+.favourite-item .remove-btn {
   background-color: #d9534f;
   color: white;
   border: none;
@@ -115,15 +117,67 @@ button:hover {
   cursor: pointer;
 }
 
-.favorite-item .remove-btn:hover {
-  background-color: #c9302c;
-}
-
-.favorite-btn {
+.favourite-btn {
   display: none;
   background-color: #5cb85c;
 }
 
-.favorite-btn:hover {
+.favourite-btn:hover {
   background-color: #4cae4c;
+}
+
+.clear-favourites-btn {
+  background-color: #d9534f; /* A red color to indicate removal */
+  margin-left: 10px; /* Add some space next to the header */
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.favorites-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.favorites-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Provides spacing between the columns */
+}
+
+.favorites-column {
+  flex: 1; /* Makes each column take up equal space */
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* New style to align items within the columns */
+#favourite-facts-list,
+#favourite-images-list {
+  text-align: centre;
+}
+
+/* Adjust the original favorite item style to fit the new layout */
+.favorite-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+#favourite-images-list img {
+  width: 150px; /* Sets the width of the image */
+  height: 150px; /* Sets the height of the image */
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+  border-radius: 5px;
+  margin-right: 10px; /* Adds a bit of space to the right of the image */
 }

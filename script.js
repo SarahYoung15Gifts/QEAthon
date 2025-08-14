@@ -5,21 +5,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const imageBtn = document.getElementById("get-image-btn");
   const catImageDisplay = document.getElementById("cat-image");
   const breedSelect = document.getElementById("breed-select");
-  const favoriteFactBtn = document.getElementById("favorite-fact-btn");
-  const favoriteImageBtn = document.getElementById("favorite-image-btn");
-  const favoritesList = document.getElementById("favorites-list");
+  const favouriteFactBtn = document.getElementById("favourite-fact-btn");
+  const favouriteImageBtn = document.getElementById("favourite-image-btn");
+
+  // New element selectors for the two columns
+  const favouriteFactsList = document.getElementById("favourite-facts-list");
+  const favouriteImagesList = document.getElementById("favourite-images-list");
+  const clearFavoritesBtn = document.getElementById("clear-favorites-btn");
 
   // API endpoints
   const catFactsApi = "https://catfact.ninja/fact";
   const catImagesApi = "https://api.thecatapi.com/v1/images/search";
   const catBreedsApi = "https://api.thecatapi.com/v1/breeds";
 
-  // Store current fact and image URLs to be favorited
+  // Store current fact and image URLs to be favourited
   let currentFact = null;
   let currentImageUrl = null;
 
-  // Load favorites from local storage when the page loads
-  loadFavorites();
+  // Load favourites from local storage when the page loads
+  loadFavourites();
 
   // --- Cat Fact Functionality ---
   factBtn.addEventListener("click", async () => {
@@ -28,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json();
       currentFact = data.fact; // Store the current fact
       catFactDisplay.textContent = currentFact;
-      favoriteFactBtn.style.display = "inline-block"; // Show the favorite button
+      favouriteFactBtn.style.display = "inline-block"; // Show the favourite button
     } catch (error) {
       console.error("Error fetching cat fact:", error);
       catFactDisplay.textContent =
@@ -58,12 +62,12 @@ document.addEventListener("DOMContentLoaded", () => {
         currentImageUrl = data[0].url; // Store the current image URL
         catImageDisplay.src = currentImageUrl;
         catImageDisplay.style.display = "block"; // Show the image
-        favoriteImageBtn.style.display = "inline-block"; // Show the favorite button
+        favouriteImageBtn.style.display = "inline-block"; // Show the favourite button
       } else {
         catImageDisplay.src = "";
         catImageDisplay.style.display = "none";
         alert("No images found for this breed.");
-        favoriteImageBtn.style.display = "none";
+        favouriteImageBtn.style.display = "none";
       }
     } catch (error) {
       console.error("Error fetching cat image:", error);
@@ -92,83 +96,89 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call the function to populate the dropdown when the page loads
   fetchCatBreeds();
 
-  // --- Favorite Functionality ---
-  favoriteFactBtn.addEventListener("click", () => {
+  // --- Favourite Functionality ---
+  favouriteFactBtn.addEventListener("click", () => {
     if (currentFact) {
-      addFavorite("fact", currentFact);
-      currentFact = null; // Clear the fact after favoriting
-      favoriteFactBtn.style.display = "none";
+      addFavourite("fact", currentFact);
+      currentFact = null; // Clear the fact after favouriting
+      favouriteFactBtn.style.display = "none";
     }
   });
 
-  favoriteImageBtn.addEventListener("click", () => {
+  favouriteImageBtn.addEventListener("click", () => {
     if (currentImageUrl) {
-      addFavorite("image", currentImageUrl);
-      currentImageUrl = null; // Clear the image after favoriting
-      favoriteImageBtn.style.display = "none";
+      addFavourite("image", currentImageUrl);
+      currentImageUrl = null; // Clear the image after favouriting
+      favouriteImageBtn.style.display = "none";
     }
   });
 
-  // Add a new favorite item to the list and local storage
-  function addFavorite(type, content) {
-    let favorites = JSON.parse(localStorage.getItem("catFavorites")) || [];
-    favorites.push({ type, content });
-    localStorage.setItem("catFavorites", JSON.stringify(favorites));
-    renderFavorites();
+  clearFavoritesBtn.addEventListener("click", () => {
+    localStorage.removeItem("catFavourites");
+    renderFavourites();
+  });
+
+  // Add a new favourite item to the list and local storage
+  function addFavourite(type, content) {
+    let favourites = JSON.parse(localStorage.getItem("catFavourites")) || [];
+    favourites.push({ type, content });
+    localStorage.setItem("catFavourites", JSON.stringify(favourites));
+    renderFavourites();
   }
 
-  // Load favorites from local storage
-  function loadFavorites() {
-    const favorites = JSON.parse(localStorage.getItem("catFavorites")) || [];
-    favorites.forEach((item) => {
-      renderFavoriteItem(item);
+  // Load favourites from local storage
+  function loadFavourites() {
+    renderFavourites();
+  }
+
+  // Render the entire favourites list from local storage
+  function renderFavourites() {
+    favouriteFactsList.innerHTML = ""; // Clear existing facts list
+    favouriteImagesList.innerHTML = ""; // Clear existing images list
+
+    const favourites = JSON.parse(localStorage.getItem("catFavourites")) || [];
+
+    favourites.forEach((item) => {
+      renderFavouriteItem(item);
     });
   }
 
-  // Render the entire favorites list from local storage
-  function renderFavorites() {
-    favoritesList.innerHTML = ""; // Clear existing list
-    const favorites = JSON.parse(localStorage.getItem("catFavorites")) || [];
-    favorites.forEach((item) => {
-      renderFavoriteItem(item);
-    });
-  }
+  // Create and append a single favourite item to the list
+  function renderFavouriteItem(item) {
+    const favouriteItem = document.createElement("div");
+    favouriteItem.className = "favorite-item";
 
-  // Create and append a single favorite item to the list
-  function renderFavoriteItem(item) {
-    const favoriteItem = document.createElement("div");
-    favoriteItem.className = "favorite-item";
-
-    if (item.type === "fact") {
-      const p = document.createElement("p");
-      p.textContent = item.content;
-      favoriteItem.appendChild(p);
-    } else if (item.type === "image") {
-      const img = document.createElement("img");
-      img.src = item.content;
-      img.alt = "Favorited cat image";
-      favoriteItem.appendChild(img);
-    }
-
-    // Add a "remove" button for each favorite item
+    // Add a "remove" button for each favourite item
     const removeBtn = document.createElement("button");
     removeBtn.className = "remove-btn";
     removeBtn.textContent = "Remove";
     removeBtn.addEventListener("click", () => {
-      removeFavorite(item);
+      removeFavourite(item);
     });
-    favoriteItem.appendChild(removeBtn);
 
-    favoritesList.appendChild(favoriteItem);
+    if (item.type === "fact") {
+      const p = document.createElement("p");
+      p.textContent = item.content;
+      favouriteItem.appendChild(p);
+      favouriteItem.appendChild(removeBtn);
+      favouriteFactsList.appendChild(favouriteItem); // Append to the facts column
+    } else if (item.type === "image") {
+      const img = document.createElement("img");
+      img.src = item.content;
+      img.alt = "Favourited cat image";
+      favouriteItem.appendChild(img);
+      favouriteItem.appendChild(removeBtn);
+      favouriteImagesList.appendChild(favouriteItem); // Append to the images column
+    }
   }
 
-  // Remove a favorite item from the list and local storage
-  function removeFavorite(itemToRemove) {
-    let favorites = JSON.parse(localStorage.getItem("catFavorites")) || [];
-    favorites = favorites.filter(
+  // Remove a favourite item from the list and local storage
+  function removeFavourite(itemToRemove) {
+    let favourites = JSON.parse(localStorage.getItem("catFavourites")) || [];
+    favourites = favourites.filter(
       (item) => item.content !== itemToRemove.content
     );
-    localStorage.setItem("catFavorites", JSON.stringify(favorites));
-    renderFavorites();
+    localStorage.setItem("catFavourites", JSON.stringify(favourites));
+    renderFavourites();
   }
 });
