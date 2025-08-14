@@ -134,7 +134,7 @@ button:hover {
   margin-top: 10px;
 }
 
-.favorites-header {
+.favourites-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,13 +142,13 @@ button:hover {
   margin-bottom: 20px;
 }
 
-.favorites-container {
+.favourites-container {
   display: flex;
   justify-content: space-between;
   gap: 20px; /* Provides spacing between the columns */
 }
 
-.favorites-column {
+.favourites-column {
   flex: 1; /* Makes each column take up equal space */
   text-align: center;
   background-color: #f9f9f9;
@@ -162,8 +162,8 @@ button:hover {
   text-align: centre;
 }
 
-/* Adjust the original favorite item style to fit the new layout */
-.favorite-item {
+/* Adjust the original favourite item style to fit the new layout */
+.favourite-item {
   display: flex;
   align-items: center;
   justify-content: space-between;

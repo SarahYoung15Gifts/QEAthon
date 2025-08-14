@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // New element selectors for the two columns
   const favouriteFactsList = document.getElementById("favourite-facts-list");
   const favouriteImagesList = document.getElementById("favourite-images-list");
-  const clearFavoritesBtn = document.getElementById("clear-favorites-btn");
+  const clearFavoritesBtn = document.getElementById("clear-favourites-btn");
 
   // API endpoints
   const catFactsApi = "https://catfact.ninja/fact";
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create and append a single favourite item to the list
   function renderFavouriteItem(item) {
     const favouriteItem = document.createElement("div");
-    favouriteItem.className = "favorite-item";
+    favouriteItem.className = "favourite-item";
 
     // Add a "remove" button for each favourite item
     const removeBtn = document.createElement("button");
