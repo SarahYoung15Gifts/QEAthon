@@ -1,0 +1,129 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  color: #5a5a5a;
+  border-bottom: 2px solid #5a5a5a;
+  padding-bottom: 10px;
+}
+
+button {
+  background-color: #795548;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #5d4037;
+}
+
+.image-controls {
+  margin-bottom: 20px;
+}
+
+#breed-select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+#cat-fact {
+  background-color: #e8e8e8;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+#cat-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.favorites-section {
+  margin-top: 30px;
+  border-top: 1px dashed #ccc;
+  padding-top: 20px;
+  text-align: left;
+}
+
+.favorites-section h2 {
+  text-align: center;
+}
+
+#favorites-list {
+  margin-top: 10px;
+}
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.favorite-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.favorite-item p {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.favorite-item .remove-btn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.favorite-item .remove-btn:hover {
+  background-color: #c9302c;
+}
+
+.favorite-btn {
+  display: none;
+  background-color: #5cb85c;
+}
+
+.favorite-btn:hover {
+  background-color: #4cae4c;
+}

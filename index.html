@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cool Cats</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cool Cats</h1>
+
+      <div class="fact-section">
+        <button id="get-fact-btn">Get a Cat Fact</button>
+        <p id="cat-fact"></p>
+        <button
+          id="favorite-fact-btn"
+          class="favorite-btn"
+          style="display: none"
+        >
+          Favorite Fact
+        </button>
+      </div>
+
+      <div class="image-section">
+        <div class="image-controls">
+          <label for="breed-select">Filter by Breed:</label>
+          <select id="breed-select">
+            <option value="">All Breeds</option>
+          </select>
+          <button id="get-image-btn">Get a Random Cat Image</button>
+        </div>
+        <img
+          id="cat-image"
+          src=""
+          alt="A random cat image"
+          style="display: none"
+        />
+        <button
+          id="favorite-image-btn"
+          class="favorite-btn"
+          style="display: none"
+        >
+          Favorite Image
+        </button>
+      </div>
+
+      <div class="favorites-section">
+        <h2>My Favorite Things</h2>
+        <div id="favorites-list"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
