@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call the function to populate the dropdown when the page loads
   fetchCatBreeds();
 
-  // --- Favourite Functionality ---
+  // Favourite Functionality
   favouriteFactBtn.addEventListener("click", () => {
     if (currentFact) {
       addFavourite("fact", currentFact);
