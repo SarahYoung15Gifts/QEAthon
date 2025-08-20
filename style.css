@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #a2af9b;
   color: #333;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  background-color: #fff;
+  background-color: #faf9ee;
   padding: 20px 40px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -26,7 +26,7 @@ h1 {
 }
 
 button {
-  background-color: #795548;
+  background-color: #dccfc0;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -59,7 +59,7 @@ button:hover {
 }
 
 #cat-fact {
-  background-color: #e8e8e8;
+  background-color: #eeefe0;
   padding: 15px;
   border-radius: 5px;
   margin: 20px 0;
@@ -109,25 +109,28 @@ button:hover {
 }
 
 .favourite-item .remove-btn {
-  background-color: #d9534f;
+  background-color: #dccfc0;
   color: white;
   border: none;
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
 }
+.remove-btn:hover {
+  background-color: #375d5c;
+}
 
 .favourite-btn {
   display: none;
-  background-color: #5cb85c;
+  background-color: #a2af9b;
 }
 
 .favourite-btn:hover {
-  background-color: #4cae4c;
+  background-color: #8a9585;
 }
 
 .clear-favourites-btn {
-  background-color: #d9534f; /* A red color to indicate removal */
+  background-color: #dccfc0; /* A red color to indicate removal */
   margin-left: 10px; /* Add some space next to the header */
   padding: 8px 16px;
   font-size: 14px;
@@ -151,7 +154,7 @@ button:hover {
 .favourites-column {
   flex: 1; /* Makes each column take up equal space */
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #eeefe0;
   padding: 15px;
   border-radius: 8px;
 }
@@ -169,7 +172,7 @@ button:hover {
   justify-content: space-between;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #f9f9f9;
+  background-color: #eeefe0;
   border-radius: 5px;
   border: 1px solid #eee;
 }
