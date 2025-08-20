@@ -37,7 +37,7 @@ h3 {
 button,
 .clear-favourites-btn,
 .clear-btn,
-.favourite-item .remove-btn {
+.favourite-item {
   background-color: #dccfc0;
   color: #fff;
   border: none;
@@ -49,6 +49,12 @@ button,
   padding: 10px 20px;
   margin: 5px;
   font-size: 16px;
+}
+
+.remove-btn {
+  margin: 10px auto 0 auto;
+  display: block;
+  margin-bottom: 10px;
 }
 
 button:hover,
