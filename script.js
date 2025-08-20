@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Select all the elements we will be interacting with
   const factBtn = document.getElementById("get-fact-btn");
   const catFactDisplay = document.getElementById("cat-fact");
   const imageBtn = document.getElementById("get-image-btn");
@@ -7,13 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const breedSelect = document.getElementById("breed-select");
   const favouriteFactBtn = document.getElementById("favourite-fact-btn");
   const favouriteImageBtn = document.getElementById("favourite-image-btn");
-
-  // New element selectors for the two columns
   const favouriteFactsList = document.getElementById("favourite-facts-list");
   const favouriteImagesList = document.getElementById("favourite-images-list");
-  const clearFavoritesBtn = document.getElementById("clear-favorites-btn");
-
-  // New element selectors for the clear buttons
+  const clearFavoritesBtn = document.getElementById("clear-favourites-btn");
   const clearFactBtn = document.getElementById("clear-fact-btn");
   const clearImageBtn = document.getElementById("clear-image-btn");
 
@@ -174,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const favouriteItem = document.createElement("div");
     favouriteItem.className = "favorite-item";
 
-    // Add a "remove" button for each favourite item
+    //"remove" button for each favourite item
     const removeBtn = document.createElement("button");
     removeBtn.className = "remove-btn";
     removeBtn.textContent = "Remove";
