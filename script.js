@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // New element selectors for the two columns
   const favouriteFactsList = document.getElementById("favourite-facts-list");
   const favouriteImagesList = document.getElementById("favourite-images-list");
-  const clearFavoritesBtn = document.getElementById("clear-favourites-btn");
+  const clearFavoritesBtn = document.getElementById("clear-favorites-btn");
+
+  // New element selectors for the clear buttons
+  const clearFactBtn = document.getElementById("clear-fact-btn");
+  const clearImageBtn = document.getElementById("clear-image-btn");
 
   // API endpoints
   const catFactsApi = "https://catfact.ninja/fact";
@@ -30,9 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch(catFactsApi);
       const data = await response.json();
-      currentFact = data.fact; // Store the current fact
+      currentFact = data.fact;
       catFactDisplay.textContent = currentFact;
-      favouriteFactBtn.style.display = "inline-block"; // Show the favourite button
+      favouriteFactBtn.style.display = "inline-block";
+      clearFactBtn.style.display = "inline-block"; // Show the clear button
     } catch (error) {
       console.error("Error fetching cat fact:", error);
       catFactDisplay.textContent =
@@ -59,21 +64,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(url);
       const data = await response.json();
       if (data.length > 0) {
-        currentImageUrl = data[0].url; // Store the current image URL
+        currentImageUrl = data[0].url;
         catImageDisplay.src = currentImageUrl;
-        catImageDisplay.style.display = "block"; // Show the image
-        favouriteImageBtn.style.display = "inline-block"; // Show the favourite button
+        catImageDisplay.style.display = "block";
+        favouriteImageBtn.style.display = "inline-block";
+        clearImageBtn.style.display = "inline-block"; // Show the clear button
       } else {
         catImageDisplay.src = "";
         catImageDisplay.style.display = "none";
         alert("No images found for this breed.");
         favouriteImageBtn.style.display = "none";
+        clearImageBtn.style.display = "none";
       }
     } catch (error) {
       console.error("Error fetching cat image:", error);
       catImageDisplay.src = "";
       catImageDisplay.style.display = "none";
       alert("Failed to load a cat image. Please try again.");
+      clearImageBtn.style.display = "none";
     }
   }
 
@@ -96,20 +104,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call the function to populate the dropdown when the page loads
   fetchCatBreeds();
 
-  // Favourite Functionality
+  // --- Clear Functionality ---
+  clearFactBtn.addEventListener("click", () => {
+    catFactDisplay.textContent = "";
+    currentFact = null;
+    clearFactBtn.style.display = "none";
+    favouriteFactBtn.style.display = "none";
+  });
+
+  clearImageBtn.addEventListener("click", () => {
+    catImageDisplay.src = "";
+    catImageDisplay.style.display = "none";
+    currentImageUrl = null;
+    clearImageBtn.style.display = "none";
+    favouriteImageBtn.style.display = "none";
+  });
+
+  // --- Favourite Functionality ---
   favouriteFactBtn.addEventListener("click", () => {
     if (currentFact) {
       addFavourite("fact", currentFact);
-      currentFact = null; // Clear the fact after favouriting
+      currentFact = null;
       favouriteFactBtn.style.display = "none";
+      clearFactBtn.style.display = "none"; // Hide clear button after favoriting
     }
   });
 
   favouriteImageBtn.addEventListener("click", () => {
     if (currentImageUrl) {
       addFavourite("image", currentImageUrl);
-      currentImageUrl = null; // Clear the image after favouriting
+      currentImageUrl = null;
       favouriteImageBtn.style.display = "none";
+      clearImageBtn.style.display = "none"; // Hide clear button after favoriting
     }
   });
 
@@ -133,8 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render the entire favourites list from local storage
   function renderFavourites() {
-    favouriteFactsList.innerHTML = ""; // Clear existing facts list
-    favouriteImagesList.innerHTML = ""; // Clear existing images list
+    favouriteFactsList.innerHTML = "";
+    favouriteImagesList.innerHTML = "";
 
     const favourites = JSON.parse(localStorage.getItem("catFavourites")) || [];
 
@@ -146,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create and append a single favourite item to the list
   function renderFavouriteItem(item) {
     const favouriteItem = document.createElement("div");
-    favouriteItem.className = "favourite-item";
+    favouriteItem.className = "favorite-item";
 
     // Add a "remove" button for each favourite item
     const removeBtn = document.createElement("button");
@@ -161,14 +187,14 @@ document.addEventListener("DOMContentLoaded", () => {
       p.textContent = item.content;
       favouriteItem.appendChild(p);
       favouriteItem.appendChild(removeBtn);
-      favouriteFactsList.appendChild(favouriteItem); // Append to the facts column
+      favouriteFactsList.appendChild(favouriteItem);
     } else if (item.type === "image") {
       const img = document.createElement("img");
       img.src = item.content;
       img.alt = "Favourited cat image";
       favouriteItem.appendChild(img);
       favouriteItem.appendChild(removeBtn);
-      favouriteImagesList.appendChild(favouriteItem); // Append to the images column
+      favouriteImagesList.appendChild(favouriteItem);
     }
   }
 
@@ -182,5 +208,3 @@ document.addEventListener("DOMContentLoaded", () => {
     renderFavourites();
   }
 });
-
-//test
